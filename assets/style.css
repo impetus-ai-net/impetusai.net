@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: 0.875rem;
 }
 .site-header .logo,
@@ -49,7 +49,7 @@ body {
 .hero h1 {
   font-size: clamp(3rem, 12vw, 8rem);
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: 0.05em;
 }
 
@@ -64,7 +64,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: 0.875rem;
 }
 .site-footer ul {
