@@ -27,14 +27,28 @@ body {
   text-transform: lowercase;
   font-size: 0.875rem;
 }
-.site-header .logo,
+
+/* logo now holds an image */
+.site-header .logo {
+  display: block;
+  /* if you want a fixed size container */
+  width: 2.5rem;
+  height: auto;
+}
+
+/* make sure the img scales */
+.site-header .logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .site-header .top-nav a {
   text-decoration: none;
   color: #fff;
   letter-spacing: 0.1em;
   font-weight: bold;
 }
-.site-header .logo { font-size: 1.25rem; }
 
 /* --------------------------------------------- */
 /* HERO SECTION */
