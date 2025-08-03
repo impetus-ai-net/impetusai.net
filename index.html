@@ -17,14 +17,11 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">
-        <img src="assets/logo.png" alt="Impetus AI" />
         <span>Impetus</span>
       </a>
       <div class="nav-menu">
-        <a href="#about" class="nav-link">About</a>
         <a href="#features" class="nav-link">Features</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <button class="cta-button">Get Early Access</button>
+        <button class="cta-button" onclick="window.open('https://www.reddit.com/r/ImpetusAI/', '_blank')">Get Early Access</button>
       </div>
       <div class="hamburger">
         <span></span>
@@ -50,13 +47,13 @@
           From intelligent automation to predictive analytics, we're crafting the future of online retail.
         </p>
         <div class="hero-buttons">
-          <button class="primary-button">
+          <button class="primary-button" onclick="window.open('https://www.reddit.com/r/ImpetusAI/', '_blank')">
             Join Waitlist
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <button class="secondary-button">
+          <button class="secondary-button" id="demo-button">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <polygon fill="currentColor" points="5,3 19,12 5,21"></polygon>
             </svg>
@@ -100,7 +97,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <div class="gradient-orb"></div>
+          <div class="fluid-gradient"></div>
         </div>
       </div>
     </div>
@@ -143,9 +140,6 @@
           <input type="email" placeholder="Enter your email address" class="email-input">
           <button class="submit-button">Get Early Access</button>
         </div>
-        <p class="cta-note">
-          Use promo code <span class="promo-code">FIRST</span> for exclusive early access benefits
-        </p>
       </div>
     </div>
   </section>
@@ -155,10 +149,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-left">
-          <div class="footer-logo">
-            <img src="assets/logo.png" alt="Impetus AI" />
-            <span>Impetus</span>
-          </div>
+                  <div class="footer-logo">
+          <span>Impetus</span>
+        </div>
           <p class="footer-description">
             Building the future of AI-powered e-commerce solutions.
           </p>
@@ -189,9 +182,7 @@
           <div class="footer-links">
             <div class="link-group">
               <h4>Company</h4>
-              <a href="#about">About</a>
               <a href="#features">Features</a>
-              <a href="#contact">Contact</a>
             </div>
             <div class="link-group">
               <h4>Legal</h4>
@@ -207,6 +198,16 @@
     </div>
   </footer>
 
+  <!-- Video Modal -->
+  <div id="video-modal" class="video-modal">
+    <div class="video-modal-content">
+      <span class="close-video">&times;</span>
+      <div class="video-container">
+        <iframe id="video-frame" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
@@ -215,6 +216,36 @@
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navMenu.classList.toggle('active');
+    });
+
+    // Demo video functionality
+    const demoButton = document.getElementById('demo-button');
+    const videoModal = document.getElementById('video-modal');
+    const closeVideo = document.querySelector('.close-video');
+    const videoFrame = document.getElementById('video-frame');
+    
+    // Replace this with your YouTube video URL
+    const youtubeVideoId = 'dQw4w9WgXcQ'; // This is a placeholder - replace with your video ID
+    const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`;
+    
+    demoButton.addEventListener('click', () => {
+      videoFrame.src = youtubeEmbedUrl;
+      videoModal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeVideo.addEventListener('click', () => {
+      videoModal.style.display = 'none';
+      videoFrame.src = '';
+      document.body.style.overflow = 'auto';
+    });
+    
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        videoModal.style.display = 'none';
+        videoFrame.src = '';
+        document.body.style.overflow = 'auto';
+      }
     });
 
     // Smooth scrolling for navigation links
