@@ -392,6 +392,29 @@
             border-radius: 4px;
             text-align: center;
         }
+
+        /* Google Form Embed Styling */
+        .google-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(255,255,255,0.1);
+        }
+
+        .google-form-iframe {
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .contact-fallback a {
+            transition: color 0.3s ease;
+        }
+
+        .contact-fallback a:hover {
+            color: #ccc !important;
+        }
     </style>
 </head>
 <body>
@@ -477,38 +500,30 @@
         <section id="contact" class="contact">
             <div class="container">
                 <h2>Ready to Scale?</h2>
-                <div class="contact-form">
-                    <div id="success-message" class="success-message">
-                        Thank you for your message! We'll get back to you within 24 hours.
-                    </div>
-                    <div id="error-message" class="error-message">
-                        There was an error sending your message. Please try again.
-                    </div>
-                    
-                    <form id="contact-form">
-                        
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company/Brand</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Tell us about your course idea and growth goals</label>
-                            <textarea id="message" name="message" placeholder="Describe your expertise, target audience, and what you're looking to achieve..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-button">Send Message</button>
-                    </form>
+                <p style="text-align: center; margin-bottom: 3rem; color: #ccc;">Fill out the form below and we'll get back to you within 24 hours</p>
+                
+                <!-- Google Form Embed Container -->
+                <div class="google-form-container">
+                    <iframe 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSejSpiLu5XnlfE-GXh1A0Kb4bNnUi3A-qW4hfTU4AyLQ6QofQ/viewform?embedded=true" 
+                        width="100%" 
+                        height="856" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        class="google-form-iframe">
+                        Loading contact form...
+                    </iframe>
+                </div>
+                
+                <!-- Fallback contact info -->
+                <div class="contact-fallback">
+                    <p style="text-align: center; color: #666; margin-top: 2rem;">
+                        Form not loading? Email us directly at 
+                        <a href="mailto:help.impetus.ai@gmail.com" style="color: #fff; text-decoration: underline;">
+                            help.impetus.ai@gmail.com
+                        </a>
+                    </p>
                 </div>
             </div>
         </section>
@@ -520,11 +535,8 @@
         </div>
     </footer>
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // Initialize EmailJS
-        emailjs.init('YOUR_PUBLIC_KEY'); // You'll need to replace this with your EmailJS public key
+        // Clean, simple JavaScript for the website
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -540,53 +552,19 @@
             });
         });
 
-        // Form submission handling with EmailJS
-        const form = document.getElementById('contact-form');
-        const successMessage = document.getElementById('success-message');
-        const errorMessage = document.getElementById('error-message');
-        const submitButton = document.querySelector('.submit-button');
+        // Google Form iframe responsive handling
+        function adjustIframeHeight() {
+            const iframe = document.querySelector('.google-form-iframe');
+            if (iframe && window.innerWidth < 768) {
+                iframe.style.height = '900px'; // Taller on mobile for better usability
+            } else if (iframe) {
+                iframe.style.height = '856px'; // Use the actual height from Google Form
+            }
+        }
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Alternative: Simple mailto fallback (works immediately)
-            const subject = encodeURIComponent('New Contact Form Submission - Impetus');
-            const body = encodeURIComponent(
-                `Name: ${formData.name}\n` +
-                `Email: ${formData.email}\n` +
-                `Company: ${formData.company}\n\n` +
-                `Message:\n${formData.message}`
-            );
-            
-            // Open mailto link
-            window.location.href = `mailto:help.impetus.ai@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Show success message
-            successMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
-            form.reset();
-            
-            // Reset button
-            submitButton.textContent = 'Send Message';
-            submitButton.disabled = false;
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
-        });
+        // Adjust iframe height on load and resize
+        window.addEventListener('load', adjustIframeHeight);
+        window.addEventListener('resize', adjustIframeHeight);
 
         // Add fade-in animation on scroll
         const observerOptions = {
