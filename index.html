@@ -1,102 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impetus — Growth Operations Optimized with AI</title>
-  <meta name="description" content="Impetus: AI-powered growth operations for scalable business success.">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impetus - Growth Operations for Creators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #000;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 98px,
+                rgba(0,0,0,0.02) 100px
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #000;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: #fff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: #000;
+        }
+
+        .service-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #000;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: #f8f8f8;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: #000;
+            color: #fff;
+        }
+
+        .contact h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #333;
+            background: #fff;
+            color: #000;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body class="bg-black text-white">
-  <!-- Header -->
-  <header class="bg-black shadow">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center">
-        <!-- Logo placeholder -->
-        <img src="logo.png" alt="Impetus Logo" class="h-8 w-auto mr-3">
-        <span class="text-2xl font-bold">Impetus</span>
-      </div>
-      <nav class="space-x-6" aria-label="Primary">
-        <a href="#features" class="hover:underline">Features</a>
-        <a href="#about" class="hover:underline">About</a>
-        <a href="#contact" class="hover:underline">Contact</a>
-      </nav>
-    </div>
-  </header>
+<body>
+    <header>
+        <nav>
+            <img src="logo.png" alt="Impetus" class="logo">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section class="container mx-auto px-6 py-20 text-center">
-      <h1 class="text-5xl font-extrabold mb-4">Accelerate Your Growth with AI</h1>
-      <p class="text-lg mb-8">Impetus delivers AI-optimized growth operations to scale your business efficiently.</p>
-      <a href="#contact" class="px-8 py-3 border border-white text-white font-semibold rounded hover:bg-white hover:text-black">Get Started</a>
-    </section>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Scale Your Course.<br>Scale Your Impact.</h1>
+                <p>We help creators transform their knowledge into profitable, scalable course businesses. From strategy to systems, we handle the growth so you can focus on what you do best.</p>
+                <a href="#contact" class="cta-button">Start Your Growth Journey</a>
+            </div>
+        </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12">Our Features</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- AI Optimization -->
-          <div class="p-6 bg-white text-black rounded-lg shadow text-center">
-            <div class="mb-4 text-6xl" role="img" aria-label="Robot icon">🤖</div>
-            <h3 class="text-2xl font-semibold mb-2">AI Optimization</h3>
-            <p>Leverage artificial intelligence to streamline operations and drive growth.</p>
-          </div>
-          <!-- Data-Driven Insights -->
-          <div class="p-6 bg-white text-black rounded-lg shadow text-center">
-            <div class="mb-4 text-6xl" role="img" aria-label="Chart icon">📊</div>
-            <h3 class="text-2xl font-semibold mb-2">Data-Driven Insights</h3>
-            <p>Make informed decisions with real-time analytics and reporting.</p>
-          </div>
-          <!-- Scalable Strategies -->
-          <div class="p-6 bg-white text-black rounded-lg shadow text-center">
-            <div class="mb-4 text-6xl" role="img" aria-label="Gear icon">⚙️</div>
-            <h3 class="text-2xl font-semibold mb-2">Scalable Strategies</h3>
-            <p>Custom strategies designed to grow with your company.</p>
-          </div>
+        <section id="services" class="services">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 1rem;">How We Drive Growth</h2>
+                <p style="text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our proven system takes creators from course concept to scalable business through strategic growth operations.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-number">01</span>
+                        <h3>Course Strategy & Development</h3>
+                        <p>We analyze your expertise and market to create compelling course concepts that resonate with your target audience and drive conversions.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <span class="service-number">02</span>
+                        <h3>Launch & Marketing Systems</h3>
+                        <p>From pre-launch buzz to post-launch optimization, we build and execute marketing funnels that maximize your course sales and student acquisition.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <span class="service-number">03</span>
+                        <h3>Scaling & Automation</h3>
+                        <p>We implement systems and processes that allow your course business to grow without proportional increases in your time investment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>The Impetus Difference</h2>
+                        <p>We're not just consultants—we're growth operators who get our hands dirty building your business alongside you. Our team combines deep expertise in online education with proven growth methodologies.</p>
+                        <p>Every creator has unique knowledge worth sharing. Our job is to help you package, market, and scale that knowledge into a thriving course business that creates lasting impact.</p>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-number">500K+</span>
+                            <span class="stat-label">Students Reached</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Courses Launched</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">300%</span>
+                            <span class="stat-label">Avg Revenue Growth</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2M+</span>
+                            <span class="stat-label">Revenue Generated</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Ready to Scale?</h2>
+                <div class="contact-form">
+                    <div id="success-message" class="success-message">
+                        Thank you for your message! We'll get back to you within 24 hours.
+                    </div>
+                    <div id="error-message" class="error-message">
+                        There was an error sending your message. Please try again.
+                    </div>
+                    
+                    <form id="contact-form" action="https://formspree.io/f/xgveqpbw" method="POST">
+                        <input type="hidden" name="_to" value="help.impetus.ai@gmail.com">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Impetus">
+                        <input type="hidden" name="_next" value="#contact">
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company/Brand</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Tell us about your course idea and growth goals</label>
+                            <textarea id="message" name="message" placeholder="Describe your expertise, target audience, and what you're looking to achieve..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Impetus. All rights reserved. | Scaling creators, one course at a time.</p>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- About Section -->
-    <section id="about" class="container mx-auto px-6 py-16">
-      <h2 class="text-4xl font-bold mb-6 text-center">About Impetus</h2>
-      <p class="max-w-2xl mx-auto text-center">At Impetus, we blend traditional growth practices with cutting-edge AI technology to deliver results that stand the test of time. Our team of experts and engineers are committed to driving measurable success for your business.</p>
-    </section>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16">
-      <div class="container mx-auto px-6 max-w-lg">
-        <h2 class="text-4xl font-bold mb-6 text-center">Contact Us</h2>
-        <!-- Fully working form via mailto -->
-        <form action="mailto:help.impetus.ai@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
-          <div>
-            <label for="name" class="block">Name</label>
-            <input id="name" name="Name" type="text" class="w-full mt-2 p-3 border border-white bg-white text-black rounded" placeholder="Your Name" required>
-          </div>
-          <div>
-            <label for="email" class="block">Email</label>
-            <input id="email" name="Email" type="email" class="w-full mt-2 p-3 border border-white bg-white text-black rounded" placeholder="Your Email" required>
-          </div>
-          <div>
-            <label for="message" class="block">Message</label>
-            <textarea id="message" name="Message" class="w-full mt-2 p-3 border border-white bg-white text-black rounded" rows="4" placeholder="How can we help?" required></textarea>
-          </div>
-          <button type="submit" class="w-full px-6 py-3 border border-white text-white font-semibold rounded hover:bg-white hover:text-black">Send Message</button>
-        </form>
-      </div>
-    </section>
-  </main>
+        // Form submission handling
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
 
-  <!-- Footer -->
-  <footer class="bg-black py-6">
-    <div class="container mx-auto px-6 text-center">
-      <p>&copy; 2025 Impetus. All rights reserved.</p>
-    </div>
-  </footer>
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    form.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                
+                // Hide error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
